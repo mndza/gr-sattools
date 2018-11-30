@@ -1,0 +1,7 @@
+/*!
+ * \defgroup block GNU Radio SATTOOLS C++ Signal Processing Blocks
+ * \brief All C++ blocks that can be used from the SATTOOLS GNU Radio
+ *        module are listed here or in the subcategories below.
+ *
+ */
+
