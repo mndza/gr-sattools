@@ -1,6 +1,7 @@
 # gr-sattools
 
 ## dependencies
+- gnuradio >=3.7.12
 - zeromq
 
 ## build
