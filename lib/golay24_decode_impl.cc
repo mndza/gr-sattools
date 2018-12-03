@@ -45,6 +45,7 @@ namespace gr {
               gr::io_signature::make(0, 0, 0))
     {
       message_port_register_out(pmt::mp("out"));
+      set_max_noutput_items(24);
     }
 
     golay24_decode_impl::~golay24_decode_impl()
@@ -59,6 +60,11 @@ namespace gr {
     {
       const uint8_t *in = (const uint8_t *) input_items[0];
       pmt::pmt_t meta = pmt::PMT_F;
+
+      // Only accept buffers containing the entire Golay codeword
+      if (noutput_items != 24) {
+        return 0;
+      }
 
       // Pack bits
       uint32_t golay_in = 0;
