@@ -10,7 +10,7 @@
     </param>
     <param>
       <key>window_size</key>
-      <value></value>
+      <value>2000,1000</value>
     </param>
     <param>
       <key>category</key>
@@ -229,7 +229,7 @@
     </param>
     <param>
       <key>gain</key>
-      <value>sps / math.pi / mod_index</value>
+      <value>sps / (2*math.pi) / mod_index</value>
     </param>
     <param>
       <key>id</key>
@@ -402,7 +402,7 @@ Doppler-corrected IQ source</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1096, 480)</value>
+      <value>(1296, 480)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -453,7 +453,7 @@ Doppler-corrected IQ source</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(952, 244)</value>
+      <value>(1152, 244)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -481,7 +481,7 @@ Doppler-corrected IQ source</value>
     </param>
     <param>
       <key>max_dev</key>
-      <value>1.5</value>
+      <value>1.1</value>
     </param>
     <param>
       <key>minoutbuf</key>
@@ -577,6 +577,81 @@ Doppler-corrected IQ source</value>
     <param>
       <key>width</key>
       <value>1000</value>
+    </param>
+    <param>
+      <key>win</key>
+      <value>firdes.WIN_HAMMING</value>
+    </param>
+  </block>
+  <block>
+    <key>low_pass_filter</key>
+    <param>
+      <key>beta</key>
+      <value>6.76</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>cutoff_freq</key>
+      <value>baudrate</value>
+    </param>
+    <param>
+      <key>decim</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>fir_filter_fff</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(952, 252)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>gain</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>low_pass_filter_1</value>
+    </param>
+    <param>
+      <key>interp</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>sps*baudrate</value>
+    </param>
+    <param>
+      <key>width</key>
+      <value>baudrate/2</value>
     </param>
     <param>
       <key>win</key>
@@ -682,7 +757,7 @@ Doppler-corrected IQ source</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(808, 452)</value>
+      <value>(1008, 452)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -750,7 +825,7 @@ Doppler-corrected IQ source</value>
   </connection>
   <connection>
     <source_block_id>dc_blocker_xx_0</source_block_id>
-    <sink_block_id>digital_symbol_sync_xx_0</sink_block_id>
+    <sink_block_id>low_pass_filter_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -769,6 +844,12 @@ Doppler-corrected IQ source</value>
   <connection>
     <source_block_id>low_pass_filter_0</source_block_id>
     <sink_block_id>analog_quadrature_demod_cf_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>low_pass_filter_1</source_block_id>
+    <sink_block_id>digital_symbol_sync_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
