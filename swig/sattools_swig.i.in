@@ -8,16 +8,21 @@
 %include "sattools_swig_doc.i"
 
 %{
+@ENABLE_SATTOOLS_ZEROMQ_DEFINE_STATEMENT@
+#ifdef _INCLUDE_ZMQ
 #include "sattools/csp_zmqhub_pub_sink.h"
+#endif
 #include "sattools/reed_solomon_ccsds_decode.h"
 #include "sattools/async_crc32c.h"
 #include "sattools/golay24_decode.h"
 #include "sattools/asm_golay_decoder.h"
 %}
 
-
+@ENABLE_SATTOOLS_ZEROMQ_DEFINE_STATEMENT@
+#ifdef _INCLUDE_ZMQ
 %include "sattools/csp_zmqhub_pub_sink.h"
 GR_SWIG_BLOCK_MAGIC2(sattools, csp_zmqhub_pub_sink);
+#endif
 %include "sattools/reed_solomon_ccsds_decode.h"
 GR_SWIG_BLOCK_MAGIC2(sattools, reed_solomon_ccsds_decode);
 %include "sattools/async_crc32c.h"

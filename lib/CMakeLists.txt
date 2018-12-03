@@ -29,8 +29,11 @@ include_directories(
 )
 link_directories(${Boost_LIBRARY_DIRS})
 
-list(APPEND sattools_sources
+list(APPEND sattools_debug_sources
     csp_zmqhub_pub_sink_impl.cc
+)
+
+list(APPEND sattools_sources
     reed_solomon_ccsds_decode_impl.cc
     rs/decode_rs_8.c
     async_crc32c_impl.cc
@@ -39,6 +42,10 @@ list(APPEND sattools_sources
     golay/golay.c
     asm_golay_decoder_impl.cc
 )
+
+if(${ENABLE_SATTOOLS_ZEROMQ})
+	list(APPEND sattools_sources ${sattools_debug_sources})
+endif()
 
 set(sattools_sources "${sattools_sources}" PARENT_SCOPE)
 if(NOT sattools_sources)

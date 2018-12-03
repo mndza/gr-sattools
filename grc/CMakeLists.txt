@@ -18,10 +18,21 @@
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
 
-install(FILES
+list(APPEND zmq_blocks
     sattools_csp_zmqhub_pub_sink.xml
+)
+
+list(APPEND enabled_blocks
     sattools_reed_solomon_ccsds_decode.xml
     sattools_async_crc32c.xml
     sattools_golay24_decode.xml
-    sattools_asm_golay_decoder.xml DESTINATION share/gnuradio/grc/blocks
+    sattools_asm_golay_decoder.xml
+)
+
+if(${ENABLE_SATTOOLS_ZEROMQ})
+	list(APPEND enabled_blocks ${zmq_blocks})
+endif()
+
+install(FILES
+    ${enabled_blocks} DESTINATION share/gnuradio/grc/blocks
 )

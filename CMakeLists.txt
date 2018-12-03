@@ -22,6 +22,7 @@
 # Project setup
 ########################################################################
 cmake_minimum_required(VERSION 2.6)
+cmake_policy(SET CMP0012 NEW)
 project(gr-sattools CXX C)
 enable_testing()
 
@@ -149,7 +150,15 @@ if(NOT CPPUNIT_FOUND)
     message(FATAL_ERROR "CppUnit required to compile sattools")
 endif()
 
-find_package(ZeroMQ)
+########################################################################
+# Option to include zmq block
+########################################################################
+option(ENABLE_SATTOOLS_ZEROMQ
+    "Include blocks that need ZMQ" ON)
+
+if(${ENABLE_SATTOOLS_ZEROMQ})
+    find_package(ZeroMQ)
+endif()
 
 ########################################################################
 # Setup doxygen option

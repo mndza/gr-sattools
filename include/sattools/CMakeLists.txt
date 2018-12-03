@@ -21,11 +21,23 @@
 ########################################################################
 # Install public header files
 ########################################################################
-install(FILES
-    api.h
+
+list(APPEND DEBUG_HEADER_FILES
     csp_zmqhub_pub_sink.h
+)
+
+list(APPEND HEADER_FILES
+    api.h
     reed_solomon_ccsds_decode.h
     async_crc32c.h
     golay24_decode.h
-    asm_golay_decoder.h DESTINATION include/sattools
+    asm_golay_decoder.h
+)
+
+if(${ENABLE_SATTOOLS_ZEROMQ})
+	list(APPEND HEADER_FILES ${DEBUG_HEADER_FILES})
+endif()
+
+install(FILES
+    ${HEADER_FILES} DESTINATION include/sattools
 )
