@@ -49,8 +49,8 @@ namespace gr {
 
      public:
       asm_golay_decoder_impl(
-        const int bitrate, const bool ccsds_randomize,
-        const bool ccsds_rs, const bool crc32c);
+        const int bitrate, const std::string& asm_bits, const int asm_threshold,
+        const bool ccsds_randomize, const bool ccsds_rs, const bool crc32c);
       ~asm_golay_decoder_impl();
     };
 

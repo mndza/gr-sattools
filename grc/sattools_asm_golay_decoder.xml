@@ -4,12 +4,26 @@
   <key>sattools_asm_golay_decoder</key>
   <category>[sattools]</category>
   <import>import sattools</import>
-  <make>sattools.asm_golay_decoder($bitrate, $ccsds_randomize, $ccsds_rs, $crc32c)</make>
+  <make>sattools.asm_golay_decoder($bitrate, $asm, $asm_threshold, $ccsds_randomize, $ccsds_rs, $crc32c)</make>
  
   <param>
     <name>Bitrate</name>
     <key>bitrate</key>
     <value>4800</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>ASM</name>
+    <key>asm</key>
+    <value>'{:b}'.format(0x930b51de)</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>ASM bitflip threshold</name>
+    <key>asm_threshold</key>
+    <value>3</value>
     <type>int</type>
   </param>
 

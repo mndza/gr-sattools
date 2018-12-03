@@ -724,6 +724,14 @@ Doppler-corrected IQ source</value>
   <block>
     <key>sattools_asm_golay_decoder</key>
     <param>
+      <key>asm_threshold</key>
+      <value>3</value>
+    </param>
+    <param>
+      <key>asm</key>
+      <value>'{:b}'.format(0x930b51de)</value>
+    </param>
+    <param>
       <key>bitrate</key>
       <value>baudrate</value>
     </param>

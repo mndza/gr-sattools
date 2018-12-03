@@ -30,30 +30,27 @@ namespace gr {
 
     asm_golay_decoder::sptr
     asm_golay_decoder::make(
-      const int bitrate, const bool ccsds_randomize,
-      const bool ccsds_rs, const bool crc32c
+      const int bitrate, const std::string& asm_bits, const int asm_threshold,
+      const bool ccsds_randomize, const bool ccsds_rs, const bool crc32c
     ) {
       return gnuradio::get_initial_sptr
-        (new asm_golay_decoder_impl(bitrate, ccsds_randomize, ccsds_rs, crc32c));
+        (new asm_golay_decoder_impl(bitrate, asm_bits, asm_threshold, ccsds_randomize, ccsds_rs, crc32c));
     }
 
     /*
      * The private constructor
      */
     asm_golay_decoder_impl::asm_golay_decoder_impl(
-      const int bitrate, const bool ccsds_randomize,
-      const bool ccsds_rs, const bool crc32c
+      const int bitrate, const std::string& asm_bits, const int asm_threshold,
+      const bool ccsds_randomize, const bool ccsds_rs, const bool crc32c
     ) : gr::hier_block2("asm_golay_decoder",
               gr::io_signature::make(1, 1, sizeof(uint8_t)),
               gr::io_signature::make(0, 0, 0))
     {
       message_port_register_hier_out(pmt::mp("out"));
 
-      // ASM marker is 0x930b51de
-      const std::string asm_bits = "10010011000010110101000111011110";
-
       // internal blocks
-      asm_tagger = gr::digital::correlate_access_code_tag_bb::make(asm_bits, 3, "asm_found");
+      asm_tagger = gr::digital::correlate_access_code_tag_bb::make(asm_bits, asm_threshold, "asm_found");
       hdr_pld_demux = gr::digital::header_payload_demux::make(
         24, 1, 0, "frame_len", "asm_found", false, sizeof(uint8_t), "rx_time", bitrate);
       golay_decoder = gr::sattools::golay24_decode::make();

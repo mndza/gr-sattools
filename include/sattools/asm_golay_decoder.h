@@ -47,8 +47,8 @@ namespace gr {
        * creating new instances.
        */
       static sptr make(
-        const int bitrate, const bool ccsds_randomize,
-        const bool ccsds_rs, const bool crc32c
+        const int bitrate, const std::string& asm_bits, const int asm_threshold,
+        const bool ccsds_randomize, const bool ccsds_rs, const bool crc32c
       );
     };
 
