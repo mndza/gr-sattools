@@ -2,15 +2,22 @@
 
 ## dependencies
 - gnuradio >=3.7.12
-- zeromq
+- zeromq (optional)
 
 ## build
+
+Follow the usual GNURadio OOT module installation steps:
+
 ```
 mkdir build/
 cd build
 cmake ../
 make -j4
 make install
+```
+**NOTE:** There is a CMake option to disable ZeroMQ-dependent blocks, in case you do not need them:
+```
+cmake -DENABLE_SATTOOLS_ZEROMQ=OFF ../
 ```
 
 ## usage
@@ -50,4 +57,5 @@ Decodes async messages using CCSDS Reed-Solomon variant (**NO** dual-basis repre
 
 ### CSP zmqhub PUB sink
 
+This block depends on ZeroMQ.
 Connects PDUs containing CSP packets to a zmqhub interface from libcsp.
