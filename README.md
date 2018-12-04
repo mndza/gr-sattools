@@ -1,10 +1,23 @@
 # gr-sattools
 
-## dependencies
+## pybombs recipe
+```
+category: common
+depends: 
+- gnuradio
+- zeromq
+source: git+https://github.com/mndza/gr-sattools.git
+gitbranch: master
+inherit: cmake
+description: GNURadio OOT module with tools for satellite decoding
+```
+
+## manual build
+
+System should meet the following dependencies:
+
 - gnuradio >=3.7.12
 - zeromq (optional)
-
-## build
 
 Follow the usual GNURadio OOT module installation steps:
 
