@@ -30,7 +30,7 @@
   <param>
     <name>CCSDS Randomization</name>
     <key>ccsds_randomize</key>
-    <type>enum</type>
+    <type>bool</type>
     <option>
       <name>Enabled</name>
       <key>True</key>
@@ -44,7 +44,7 @@
   <param>
     <name>CCSDS Reed-Solomon</name>
     <key>ccsds_rs</key>
-    <type>enum</type>
+    <type>bool</type>
     <option>
       <name>Enabled</name>
       <key>True</key>
@@ -58,7 +58,7 @@
   <param>
     <name>CRC32-C</name>
     <key>crc32c</key>
-    <type>enum</type>
+    <type>bool</type>
     <option>
       <name>Enabled</name>
       <key>True</key>
