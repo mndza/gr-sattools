@@ -481,7 +481,7 @@ Doppler-corrected IQ source</value>
     </param>
     <param>
       <key>max_dev</key>
-      <value>1.1</value>
+      <value>0.01</value>
     </param>
     <param>
       <key>minoutbuf</key>
