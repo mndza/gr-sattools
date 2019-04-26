@@ -26,7 +26,7 @@ mkdir build/
 cd build
 cmake ../
 make -j4
-make install
+sudo make install
 ```
 **NOTE:** There is a CMake option to disable ZeroMQ-dependent blocks, in case you do not need them:
 ```
