@@ -89,7 +89,7 @@ int32_t golay_decode(uint32_t word) {
 	for (int i = 0; i < 12; i++) {
 		weight = __builtin_popcount(syndrome2 ^ golay_code[i]);
 		if (weight <= 2) {
-			errorVector = 0x800000 >> i | (syndrome ^ golay_code[i]);
+			errorVector = 0x800000 >> i | (syndrome2 ^ golay_code[i]);
 			goto word_found;
 		}
 	}
