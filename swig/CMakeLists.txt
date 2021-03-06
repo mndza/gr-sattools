@@ -22,15 +22,15 @@
 # Check if there is C++ code at all
 ########################################################################
 if(NOT sattools_sources)
-	MESSAGE(STATUS "No C++ sources... skipping swig/")
-	return()
+    MESSAGE(STATUS "No C++ sources... skipping swig/")
+    return()
 endif(NOT sattools_sources)
 
 ########################################################################
 # Include swig generation macros
 ########################################################################
 find_package(SWIG)
-find_package(PythonLibs 2)
+find_package(PythonLibs)
 if(NOT SWIG_FOUND OR NOT PYTHONLIBS_FOUND)
     return()
 endif()
@@ -40,26 +40,19 @@ include(GrPython)
 ########################################################################
 # Setup swig generation
 ########################################################################
-foreach(incdir ${GNURADIO_RUNTIME_INCLUDE_DIRS})
-    list(APPEND GR_SWIG_INCLUDE_DIRS ${incdir}/gnuradio/swig)
-endforeach(incdir)
-
-if(${ENABLE_SATTOOLS_ZEROMQ})
-    set(ENABLE_SATTOOLS_ZEROMQ_DEFINE_STATEMENT "#define _INCLUDE_ZMQ 1")
-else()
-    set(ENABLE_SATTOOLS_ZEROMQ_DEFINE_STATEMENT "")
-endif()
-
-configure_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/sattools_swig.i.in
-    ${CMAKE_CURRENT_BINARY_DIR}/sattools_swig.i
-@ONLY)
+set(GR_SWIG_INCLUDE_DIRS $<TARGET_PROPERTY:gnuradio::runtime_swig,INTERFACE_INCLUDE_DIRECTORIES>)
+set(GR_SWIG_TARGET_DEPS gnuradio::runtime_swig)
 
 set(GR_SWIG_LIBRARIES gnuradio-sattools)
+
 set(GR_SWIG_DOC_FILE ${CMAKE_CURRENT_BINARY_DIR}/sattools_swig_doc.i)
 set(GR_SWIG_DOC_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
-GR_SWIG_MAKE(sattools_swig ${CMAKE_CURRENT_BINARY_DIR}/sattools_swig.i)
+if(${ENABLE_SATTOOLS_ZEROMQ})
+list(APPEND GR_SWIG_FLAGS -DENABLE_SATTOOLS_ZEROMQ)
+endif()
+
+GR_SWIG_MAKE(sattools_swig sattools_swig.i)
 
 ########################################################################
 # Install the build swig module
@@ -71,7 +64,7 @@ GR_SWIG_INSTALL(TARGETS sattools_swig DESTINATION ${GR_PYTHON_DIR}/sattools)
 ########################################################################
 install(
     FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/sattools_swig.i
+    sattools_swig.i
     ${CMAKE_CURRENT_BINARY_DIR}/sattools_swig_doc.i
     DESTINATION ${GR_INCLUDE_DIR}/sattools/swig
 )

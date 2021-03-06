@@ -17,22 +17,17 @@
 # along with GNU Radio; see the file COPYING.  If not, write to
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
-
-list(APPEND zmq_blocks
-    sattools_csp_zmqhub_pub_sink.xml
-)
-
-list(APPEND enabled_blocks
-    sattools_reed_solomon_ccsds_decode.xml
-    sattools_async_crc32c.xml
-    sattools_golay24_decode.xml
-    sattools_asm_golay_decoder.xml
+install(FILES
+    sattools_asm_golay_decoder.block.yml
+    sattools_async_crc32c.block.yml
+    sattools_golay24_decode.block.yml
+    sattools_reed_solomon_ccsds_decode.block.yml
+    DESTINATION share/gnuradio/grc/blocks
 )
 
 if(${ENABLE_SATTOOLS_ZEROMQ})
-	list(APPEND enabled_blocks ${zmq_blocks})
-endif()
-
 install(FILES
-    ${enabled_blocks} DESTINATION share/gnuradio/grc/blocks
+    sattools_csp_zmqhub_pub_sink.block.yml
+    DESTINATION share/gnuradio/grc/blocks
 )
+endif()

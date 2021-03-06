@@ -1,0 +1,18 @@
+id: sattools_reed_solomon_ccsds_decode
+label: Reed-Solomon CCSDS Decoder
+category: '[sattools]'
+
+templates:
+  imports: import sattools
+  make: sattools.reed_solomon_ccsds_decode()
+  
+inputs:
+- id: in
+  domain: message
+
+outputs:
+- id: out
+  domain: message
+  optional: true
+
+file_format: 1

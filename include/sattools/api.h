@@ -26,9 +26,9 @@
 #include <gnuradio/attributes.h>
 
 #ifdef gnuradio_sattools_EXPORTS
-#  define SATTOOLS_API __GR_ATTR_EXPORT
+#define SATTOOLS_API __GR_ATTR_EXPORT
 #else
-#  define SATTOOLS_API __GR_ATTR_IMPORT
+#define SATTOOLS_API __GR_ATTR_IMPORT
 #endif
 
 #endif /* INCLUDED_SATTOOLS_API_H */

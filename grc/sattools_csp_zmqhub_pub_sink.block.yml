@@ -1,0 +1,20 @@
+id: sattools_csp_zmqhub_pub_sink
+label: CSP zmqhub PUB sink
+category: '[sattools]'
+
+templates:
+  imports: import sattools
+  make: sattools.csp_zmqhub_pub_sink(${pub_endpoint})
+
+parameters:
+- id: pub_endpoint
+  label: Publisher endpoint
+  dtype: string
+  default: 'tcp://address:port'
+
+inputs:
+- id: pdu
+  domain: message
+  optional: true
+
+file_format: 1

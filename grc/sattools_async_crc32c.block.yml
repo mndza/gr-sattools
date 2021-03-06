@@ -1,0 +1,25 @@
+id: sattools_async_crc32c
+label: Async CRC32-Castagnoli
+category: '[sattools]'
+
+templates:
+  imports: import sattools
+  make: sattools.async_crc32c(${check})
+
+parameters:
+- id: check
+  label: Mode
+  dtype: enum
+  options: ['False', 'True']
+  option_labels: [Generate CRC, Check CRC]
+
+inputs:
+- id: in
+  domain: message
+  
+outputs:
+- id: out
+  domain: message
+  optional: true
+
+file_format: 1

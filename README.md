@@ -16,7 +16,7 @@ description: GNURadio OOT module with tools for satellite decoding
 
 System should meet the following dependencies:
 
-- gnuradio >=3.7.12
+- gnuradio 3.8 (older versions: use `maint-3.7` branch)
 - zeromq (optional)
 
 Follow the usual GNURadio OOT module installation steps:

@@ -1,0 +1,46 @@
+id: sattools_asm_golay_decoder
+label: ASM+Golay Decoder
+category: '[sattools]'
+
+templates:
+  imports: import sattools
+  make: sattools.asm_golay_decoder(${bitrate}, ${asm_bits}, ${asm_threshold}, ${ccsds_randomize}, ${ccsds_rs}, ${crc32c})
+
+parameters:
+- id: bitrate
+  label: Bitrate
+  dtype: int
+  default: '4800'
+- id: asm_bits
+  label: ASM
+  dtype: string
+  default: '''{:b}''.format(0x930b51de)'
+- id: asm_threshold
+  label: ASM bitflip threshold
+  dtype: int
+  default: '3'
+- id: ccsds_randomize
+  label: CCSDS Randomization
+  dtype: bool
+  options: ['True', 'False']
+  option_labels: [Enabled, Disabled]
+- id: ccsds_rs
+  label: CCSDS Reed-Solomon
+  dtype: bool
+  options: ['True', 'False']
+  option_labels: [Enabled, Disabled]
+- id: crc32c
+  label: CRC32-C
+  dtype: bool
+  options: ['True', 'False']
+  option_labels: [Enabled, Disabled]
+
+inputs:
+- domain: stream
+  dtype: byte
+
+outputs:
+- id: out
+  domain: message
+
+file_format: 1

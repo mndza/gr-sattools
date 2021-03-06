@@ -1,0 +1,17 @@
+id: sattools_golay24_decode
+label: Golay24 Decoder
+category: '[sattools]'
+
+templates:
+  imports: import sattools
+  make: sattools.golay24_decode()
+
+inputs:
+- domain: stream
+  dtype: byte
+
+outputs:
+- id: out
+  domain: message
+
+file_format: 1
