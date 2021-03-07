@@ -14,10 +14,7 @@ description: GNURadio OOT module with tools for satellite decoding
 
 ## manual build
 
-System should meet the following dependencies:
-
-- gnuradio 3.8 (older versions: use `maint-3.7` branch)
-- zeromq (optional)
+There are no dependencies besides GNURadio 3.8. For GNURadio 3.7, please use the old `maint-3.7` branch.
 
 Follow the usual GNURadio OOT module installation steps:
 
@@ -28,7 +25,7 @@ cmake ../
 make -j4
 sudo make install
 ```
-**NOTE:** There is a CMake option to disable ZeroMQ-dependent blocks, in case you do not need them:
+**NOTE:** Blocks requiring ZeroMQ will be built if ZeroMQ is found in the system. There is a CMake option to disable this, in case you do not need it:
 ```
 cmake -DENABLE_SATTOOLS_ZEROMQ=OFF ../
 ```
