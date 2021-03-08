@@ -16,14 +16,15 @@ description: GNURadio OOT module with tools for satellite decoding
 
 There are no dependencies besides GNURadio 3.8. For GNURadio 3.7, please use the old `maint-3.7` branch.
 
-Follow the usual GNURadio OOT module installation steps:
+Follow the usual GNURadio OOT module installation steps, modifying the `CMAKE_INSTALL_PREFIX` path if necessary (`/usr` for GNURadio installed through Ubuntu/Debian repositories, `/usr/local` by default when not set):
 
 ```
 mkdir build/
 cd build
-cmake ../
+cmake -DCMAKE_INSTALL_PREFIX=/usr ../
 make -j4
 sudo make install
+sudo ldconfig
 ```
 **NOTE:** Blocks requiring ZeroMQ will be built if ZeroMQ is found in the system. There is a CMake option to disable this, in case you do not need it:
 ```
